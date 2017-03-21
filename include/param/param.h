@@ -54,7 +54,7 @@ typedef const struct param_s {
 	void (*callback)(const struct param_s * param);
 } param_t;
 
-extern param_t __start_param, __stop_param;
+__attribute__((weak)) extern param_t __start_param, __stop_param;
 
 #ifndef PARAM_STORAGE_SIZE
 static const param_t param_size_set[2] __attribute__((aligned(1)));
