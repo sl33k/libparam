@@ -234,5 +234,18 @@ void param_print(param_t * param, int offset, int nodes[], int nodes_count, int 
 	}
 
 	printf("\n");
+	if (param->vmem) {
+		printf("  VMEM %s %p\n", param->vmem->name, param->vmem->vaddr);
+	} else {
+		printf("  RAM ");
+	}
+	for (int i = 0; i < param->array_size; i++) {
+		void * offset = 0;
+		if (param->vmem)
+			offset = param->vmem->vaddr;
+		printf("    0x%lx %s[%u]\n", (intptr_t) offset + (intptr_t) param->addr + i * param->array_step, param->name, i);
+	}
+
+	printf("\n");
 
 }
