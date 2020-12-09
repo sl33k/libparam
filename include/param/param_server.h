@@ -14,6 +14,10 @@
 #define PARAM_PORT_SERVER 10
 #define PARAM_PORT_LIST	12
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * First byte on all packets is the packet type
  */
@@ -48,4 +52,7 @@ typedef enum {
  */
 void param_serve(csp_packet_t * packet);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* LIB_PARAM_INCLUDE_PARAM_PARAM_SERVER_H_ */

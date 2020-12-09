@@ -13,6 +13,10 @@
 
 #define PARAM_LIST_LOCAL	255
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct param_list_iterator_s {
 	int phase;							// Hybrid iterator has multiple phases (0 == Static, 1 == Dynamic List)
 	param_t * element;
@@ -41,4 +45,7 @@ void param_list_store_file_load(char * filename);
 void param_list_store_vmem_save(const vmem_t * vmem);
 void param_list_store_vmem_load(const vmem_t * vmem);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* LIB_PARAM_INCLUDE_PARAM_PARAM_LIST_H_ */

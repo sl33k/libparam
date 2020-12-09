@@ -11,6 +11,10 @@
 #include <param/param.h>
 #include <param/param_queue.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * SINGLE PARAMETER API
  *
@@ -87,5 +91,7 @@ int param_push_single(param_t *param, int offset, void *value, int verbose, int 
 int param_pull_queue(param_queue_t *queue, int verbose, int host, int timeout);
 int param_push_queue(param_queue_t *queue, int verbose, int host, int timeout);
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* LIB_PARAM_INCLUDE_PARAM_PARAM_CLIENT_H_ */

@@ -12,6 +12,10 @@
 #include <param/param_list.h>
 #include <mpack/mpack.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
 	PARAM_QUEUE_TYPE_GET,
 	PARAM_QUEUE_TYPE_SET,
@@ -57,5 +61,7 @@ void param_deserialize_id(mpack_reader_t *reader, int *id, int *node, int *offse
 		param_t * param = param_list_find_id(node, id); \
 
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* LIB_PARAM_SRC_PARAM_PARAM_QUEUE_H_ */
