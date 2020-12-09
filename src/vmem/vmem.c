@@ -11,7 +11,7 @@
 
 #include <vmem/vmem.h>
 
-extern int __start_vmem, __stop_vmem;
+extern __attribute__((weak)) int __start_vmem, __stop_vmem;
 
 void * vmem_memcpy(void * to, void * from, size_t size) {
 
