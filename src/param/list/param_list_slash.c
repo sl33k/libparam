@@ -40,7 +40,7 @@ static int list_download(struct slash *slash)
     if (slash->argc >= 4)
         version = atoi(slash->argv[3]);
 
-    param_list_download(node, timeout, version);
+    param_list_download(node, timeout, version, 1);
 
     return SLASH_SUCCESS;
 }
