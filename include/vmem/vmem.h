@@ -26,6 +26,7 @@ enum vmem_types{
 
 typedef struct vmem_s {
 	int type;
+    void (*init)(const struct vmem_s *vmem);
 	void (*read)(const struct vmem_s * vmem, uint32_t addr, void * dataout, int len);
 	void (*write)(const struct vmem_s * vmem, uint32_t addr, void * datain, int len);
 	int (*backup)(const struct vmem_s * vmem);
@@ -40,6 +41,7 @@ typedef struct vmem_s {
 void * vmem_memcpy(void * to, void * from, size_t size);
 vmem_t * vmem_index_to_ptr(int idx);
 int vmem_ptr_to_index(vmem_t * vmem);
+void vmem_init(void);
 
 extern int __start_vmem, __stop_vmem;
 

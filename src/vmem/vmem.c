@@ -46,3 +46,24 @@ int vmem_ptr_to_index(vmem_t * vmem) {
 	return vmem - (vmem_t *) &__start_vmem;
 }
 
+/* we use __end as the starting point for vaddr selection, since this will never interfere with addresses that are valid within the image */
+/* TODO: make sure they also don't interfere with IO mappings. */
+extern int _end;
+static void * vmem_next_vaddr_ptr = NULL;
+
+void vmem_init(void) {
+	for(vmem_t * vmem = (vmem_t *) &__start_vmem; vmem < (vmem_t *) &__stop_vmem; vmem++) {
+        if(vmem->init != NULL) {
+            vmem->init(vmem);
+        }
+        /* assign vaddr if not done statically */
+        if(vmem->vaddr == NULL) {
+            if(vmem_next_vaddr_ptr == NULL) {
+                vmem_next_vaddr_ptr = (void *) &_end;
+            }
+            vmem->vaddr = vmem_next_vaddr_ptr;
+            vmem_next_vaddr_ptr += vmem->size;
+        }
+    }
+}
+
